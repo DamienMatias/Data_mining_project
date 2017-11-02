@@ -1,6 +1,6 @@
 cleandata = function(mydata) {
   mydata <- na.omit(mydata)
-  print(mydata$What.is.your.height...cm.)
+  #print(mydata$What.is.your.height...cm.)
   #How.much.do.you.weigh...kg.
   new_weight <- c()
   for (weights in mydata$How.much.do.you.weigh...kg.) {
@@ -17,15 +17,20 @@ cleandata = function(mydata) {
   new_height <- c()
   for (heights in mydata$What.is.your.height...cm.) {
     if(!is.na(heights)) {
+      
       if (endsWith(heights, "cm")) {
         withspaces <- substr(heights, 0, nchar(heights)-2)
         heights <- gsub(" ", "", withspaces, fixed = TRUE)
       }
-      #heights <- strtoi(heights)
+      if(heights=="1.60") {
+        heights <- 160
+      }
+      
+      heights <- strtoi(heights)
       #print(heights)
-      #if(heights < 100) {
-       # heights <- heights + 100
-      #}
+      if(heights < 100) {
+        heights <- heights + 100
+      }
     }
     
     new_height <- append(new_height, strtoi(heights))
