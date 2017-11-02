@@ -1,4 +1,6 @@
-cleaned=read.csv("cleaned.csv",header=TRUE, sep=";" ,na.strings=" ")
+source("cleaning.R")
+mydata=read.csv("Dataset.csv",header=TRUE, sep=";" ,na.strings=" ")
+cleaned=cleandata(mydata)
 
 #Some computation
 age_mean = mean(cleaned$Age)
