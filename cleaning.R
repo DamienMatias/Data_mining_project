@@ -157,7 +157,16 @@ cleandata = function(mydata) {
   names(mydata)[names(mydata)=="Do.you.prefer.to.quit.or.to.reduce.smoking."] <- "Quit.reduce"
   names(mydata)[names(mydata)=="Why.do.you.want.to.reduce.quit.smoking."] <- "Why.quit"
   
-  return (mydata)
+  # Our goal here is to categorize the data to use the apriori algorithm 
+  categorized <- mydata
+  categorized$Age.cat <- discretize(cleaned$Age, categories = 3)
+  categorized$Weight.cat <- discretize(cleaned$Weight, categories = 3)
+  categorized$Height.cat <- discretize(cleaned$Height, categories = 3)
+  categorized$Age.started.smoking.cat <- discretize(cleaned$Age.started.smoking, categories = 2)
+  categorized$BMI.cat <- discretize(cleaned$BMI, method = "fixed",categories = c(-Inf, 18.5, 25, 30, Inf), labels = c("Underweight", "Normal", "Overweight", "Obesity"))
+  #summary(categorized)
+  
+  return (categorized)
 }
 
 
