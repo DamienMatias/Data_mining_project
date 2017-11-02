@@ -159,11 +159,11 @@ cleandata = function(mydata) {
   
   # Our goal here is to categorize the data to use the apriori algorithm 
   categorized <- mydata
-  categorized$Age.cat <- discretize(cleaned$Age, categories = 3)
-  categorized$Weight.cat <- discretize(cleaned$Weight, categories = 3)
-  categorized$Height.cat <- discretize(cleaned$Height, categories = 3)
-  categorized$Age.started.smoking.cat <- discretize(cleaned$Age.started.smoking, categories = 2)
-  categorized$BMI.cat <- discretize(cleaned$BMI, method = "fixed",categories = c(-Inf, 18.5, 25, 30, Inf), labels = c("Underweight", "Normal", "Overweight", "Obesity"))
+  categorized$Age.cat <- discretize(categorized$Age, categories = 3)
+  categorized$Weight.cat <- discretize(categorized$Weight, categories = 3)
+  categorized$Height.cat <- discretize(categorized$Height, categories = 3)
+  categorized$Age.started.smoking.cat <- discretize(categorized$Age.started.smoking, categories = 2)
+  categorized$BMI.cat <- discretize(categorized$BMI, method = "fixed",categories = c(-Inf, 18.5, 25, 30, Inf), labels = c("Underweight", "Normal", "Overweight", "Obesity"))
   #summary(categorized)
   
   return (categorized)
