@@ -100,6 +100,28 @@ cleandata = function(mydata) {
   #BMI
   mydata$BMI <- mydata$How.much.do.you.weigh...kg./((mydata$What.is.your.height...cm./100)**2)
   
+  #Renaming columns
+  names(mydata)[names(mydata)=="How.do.you.describe.your.health."] <- "Health.category"
+  names(mydata)[names(mydata)=="How.much.do.you.weigh...kg."] <- "Weight"
+  names(mydata)[names(mydata)=="What.is.your.height...cm."] <- "Height"
+  names(mydata)[names(mydata)=="Do.you.have.or.have.you.had.any.of.the.below.health.conditions...select.all.that.apply."] <- "Health.conditions"
+  names(mydata)[names(mydata)=="At.what.age.you.started.to.smoke.regularly."] <- "Age.started.smoking"
+  names(mydata)[names(mydata)=="How.many.cigarettes.do.you.smoke.each.day."] <- "Cigarettes.each.day"
+  names(mydata)[names(mydata)=="How.soon.after.you.wake.up.do.you.smoke.your.first.cigarette."] <- "First.cigarette"
+  names(mydata)[names(mydata)=="When.did.you.last.try.to.quit.smoking."] <- "When.last.try"
+  names(mydata)[names(mydata)=="What.method.did.you.try.to.quit.smoking.before...select.all.that.apply."] <- "Method.quit"
+  names(mydata)[names(mydata)=="Did.you.manage.to.quit.smoking.using.that.method."] <- "Success.quiting"
+  names(mydata)[names(mydata)=="How.would.you.categorize.your.friends."] <- "Categorize.friends"
+  names(mydata)[names(mydata)=="How.would.you.categorize.your.family."] <- "Categorize.family"
+  names(mydata)[names(mydata)=="What.is.the.brand.of.your.cigarettes."] <- "Brand.cigarettes"
+  names(mydata)[names(mydata)=="Which.type.of.cigarettes.box.do.you.buy."] <- "Type.cigarettes"
+  names(mydata)[names(mydata)=="How.important.is.having.your.own.lighter.in.your.smoking.process.experience."] <- "Importance.lighter"
+  names(mydata)[names(mydata)=="What.type.of.phone.do.you.have."] <- "Type.phone"
+  names(mydata)[names(mydata)=="Where.do.you.live."] <- "Where.living"
+  names(mydata)[names(mydata)=="How.much.salary.do.you.earn.each.month."] <- "Salary"
+  names(mydata)[names(mydata)=="Do.you.prefer.to.quit.or.to.reduce.smoking."] <- "Quit.reduce"
+  names(mydata)[names(mydata)=="Why.do.you.want.to.reduce.quit.smoking."] <- "Why.quit"
+  
   return (mydata)
 }
 
