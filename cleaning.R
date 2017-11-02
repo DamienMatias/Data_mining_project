@@ -1,6 +1,7 @@
 mydata=read.csv("Dataset.csv",header=TRUE, sep=";" ,na.strings=" ")
 
 summary(mydata)
+#How.much.do.you.weigh...kg.
 new_weight <- c()
 for (weights in mydata$How.much.do.you.weigh...kg.) {
   if (endsWith(weights, "kg")) {
@@ -12,6 +13,7 @@ for (weights in mydata$How.much.do.you.weigh...kg.) {
 mydata$How.much.do.you.weigh...kg. <- new_weight
 print(mydata$How.much.do.you.weigh...kg.)
 
+#What.is.your.height...cm.
 new_height <- c()
 for (heights in mydata$What.is.your.height...cm.) {
   if (endsWith(heights, "kg")) {
@@ -23,6 +25,7 @@ for (heights in mydata$What.is.your.height...cm.) {
 mydata$What.is.your.height...cm. <- new_height
 print(mydata$What.is.your.height...cm.)
 
+#How.many.cigarettes.do.you.smoke.each.day.
 new_howmanycig <- c()
 for (number in mydata$How.many.cigarettes.do.you.smoke.each.day.) {
   if (number == "nov-20") {
@@ -30,9 +33,10 @@ for (number in mydata$How.many.cigarettes.do.you.smoke.each.day.) {
   }
   new_howmanycig <- c(new_howmanycig, number)
 }
-mydata$How.many.cigarettes.do.you.smoke.each.day. <- new_howmanycig
+mydata$How.many.cigarettes.do.you.smoke.each.day. <- factor(new_howmanycig)
 summary(mydata)
 
+#What.type.of.phone.do.you.have.
 new_phone <- c()
 for (phone in mydata$What.type.of.phone.do.you.have.) {
   if (startsWith(phone, "i")) {
@@ -46,8 +50,55 @@ for (phone in mydata$What.type.of.phone.do.you.have.) {
   }
   new_phone <- c(new_phone, phone)
 }
-mydata$What.type.of.phone.do.you.have. <- new_phone
+mydata$What.type.of.phone.do.you.have. <- factor(new_phone)
 print(mydata$What.type.of.phone.do.you.have.)
 
+#How.much.salary.do.you.earn.each.month.
+new_salary <- c()
+for (salary in mydata$How.much.salary.do.you.earn.each.month.) {
+  if (startsWith(salary, "P")) {
+    salary <- 'Prefer not to say'
+  }
+
+  new_salary <- c(new_salary, salary)
+}
+mydata$How.much.salary.do.you.earn.each.month. <- factor(new_salary)
+
+#How.do.you.describe.your.health.
+new_health <- c()
+for (health in mydata$How.do.you.describe.your.health.) {
+  if (startsWith(health, "I am")) {
+    health <- 'Healthy'
+  }
+  else if (startsWith(health, "I have major")) {
+    health <- 'Major problem'
+  }
+  else if (startsWith(health, "I have minor")) {
+    health <- 'Minor problem'
+  }
+  
+  new_health <- c(new_health, health)
+}
+mydata$How.do.you.describe.your.health. <- factor(new_health)
+
+#Do.you.prefer.to.quit.or.to.reduce.smoking.
+new_quit <- c()
+for (quit in mydata$Do.you.prefer.to.quit.or.to.reduce.smoking.) {
+  if (startsWith(quit, "I would like to q")) {
+    quit <- 'Quit smoking'
+  }
+  else if (startsWith(quit, "I would like to r")) {
+    quit <- 'Reduce smoking'
+  }
+  else if (startsWith(quit, "I am happy")) {
+    quit <- 'Don t change anything'
+  }
+  else {
+    quit <- ''
+  }
+  
+  new_quit <- c(new_quit, quit)
+}
+mydata$Do.you.prefer.to.quit.or.to.reduce.smoking. <- factor(new_quit)
 
 #mydata$How.much.do.you.weigh...kg. <- discretize(mydata$How.much.do.you.weigh...kg., categories = 3)
