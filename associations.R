@@ -42,9 +42,9 @@ rules2.sorted <- sort(rules2, by="lift")
 inspect(rules2.sorted)
 
 #3rd try (Phones)
-third <- categorized[,c("Gender", "Type.phone", "Salary", "BMI")]
+third <- categorized[,c("Gender", "Education","Type.phone", "Salary", "BMI")]
 
-rules3 <- apriori(third, control = list(verbose=T), parameter = list(minlen=2, supp=0.005, conf=0.8, maxlen=4), appearance = list(rhs=c("Gender=Male", "Gender=Female"), default="lhs"))
+rules3 <- apriori(third, control = list(verbose=T), parameter = list(minlen=2, supp=0.005, conf=0.8, maxlen=4), appearance = list(rhs=c("Type.phone=iPhone", "Type.phone=Android"), default="lhs"))
 quality(rules3) <- round(quality(rules3), digits = 3)
 rules3.sorted <- sort(rules3, by="lift")
 inspect(rules3.sorted)

@@ -1,4 +1,6 @@
 cleandata = function(mydata) {
+  mydata <- na.omit(mydata)
+  print(mydata$What.is.your.height...cm.)
   #How.much.do.you.weigh...kg.
   new_weight <- c()
   for (weights in mydata$How.much.do.you.weigh...kg.) {
@@ -9,19 +11,27 @@ cleandata = function(mydata) {
     new_weight <- append(new_weight, strtoi(weights))
   }
   mydata$How.much.do.you.weigh...kg. <- new_weight
-  print(mydata$How.much.do.you.weigh...kg.)
+  #print(mydata$How.much.do.you.weigh...kg.)
   
   #What.is.your.height...cm.
   new_height <- c()
   for (heights in mydata$What.is.your.height...cm.) {
-    if (endsWith(heights, "kg")) {
-      withspaces <- substr(heights, 0, nchar(heights)-2)
-      heights <- gsub(" ", "", withspaces, fixed = TRUE)
+    if(!is.na(heights)) {
+      if (endsWith(heights, "cm")) {
+        withspaces <- substr(heights, 0, nchar(heights)-2)
+        heights <- gsub(" ", "", withspaces, fixed = TRUE)
+      }
+      #heights <- strtoi(heights)
+      #print(heights)
+      #if(heights < 100) {
+       # heights <- heights + 100
+      #}
     }
+    
     new_height <- append(new_height, strtoi(heights))
   }
   mydata$What.is.your.height...cm. <- new_height
-  print(mydata$What.is.your.height...cm.)
+  #print(mydata$What.is.your.height...cm.)
   
   #How.many.cigarettes.do.you.smoke.each.day.
   new_howmanycig <- c()
@@ -118,7 +128,7 @@ cleandata = function(mydata) {
   mydata$Education <- factor(new_education)
   
   #BMI
-  mydata$BMI <- mydata$How.much.do.you.weigh...kg./((mydata$What.is.your.height...cm./100)**2)
+  mydata$BMI <- round(mydata$How.much.do.you.weigh...kg./((mydata$What.is.your.height...cm./100)**2))
   
   #Renaming columns
   names(mydata)[names(mydata)=="How.do.you.describe.your.health."] <- "Health.category"
