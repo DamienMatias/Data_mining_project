@@ -1,6 +1,6 @@
 cleandata = function(mydata) {
   mydata <- na.omit(mydata)
-  #print(mydata$What.is.your.height...cm.)
+  
   #How.much.do.you.weigh...kg.
   new_weight <- c()
   for (weights in mydata$How.much.do.you.weigh...kg.) {
@@ -11,7 +11,6 @@ cleandata = function(mydata) {
     new_weight <- append(new_weight, strtoi(weights))
   }
   mydata$How.much.do.you.weigh...kg. <- new_weight
-  #print(mydata$How.much.do.you.weigh...kg.)
   
   #What.is.your.height...cm.
   new_height <- c()
@@ -167,7 +166,6 @@ cleandata = function(mydata) {
   categorized$Height.cat <- discretize(categorized$Height, categories = 3)
   categorized$Age.started.smoking.cat <- discretize(categorized$Age.started.smoking, categories = 2)
   categorized$BMI.cat <- discretize(categorized$BMI, method = "fixed",categories = c(-Inf, 18.5, 25, 30, Inf), labels = c("Underweight", "Normal", "Overweight", "Obesity"))
-  #summary(categorized)
   
   return (categorized)
 }
