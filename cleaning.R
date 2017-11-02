@@ -97,6 +97,26 @@ cleandata = function(mydata) {
   }
   mydata$Do.you.prefer.to.quit.or.to.reduce.smoking. <- factor(new_quit)
   
+  #Education
+  new_education <- c()
+  for (edu in mydata$Education) {
+    if (startsWith(edu, "Graduate degree")) {
+      edu <- 'Graduate degree'
+    }
+    else if (startsWith(edu, "High school")) {
+      edu <- 'High school'
+    }
+    else if (startsWith(edu, "Undergraduate degree")) {
+      edu <- 'Undergraduate degree'
+    }
+    else {
+      edu <- ''
+    }
+    
+    new_education <- c(new_education, edu)
+  }
+  mydata$Education <- factor(new_education)
+  
   #BMI
   mydata$BMI <- mydata$How.much.do.you.weigh...kg./((mydata$What.is.your.height...cm./100)**2)
   
