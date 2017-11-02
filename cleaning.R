@@ -101,4 +101,5 @@ for (quit in mydata$Do.you.prefer.to.quit.or.to.reduce.smoking.) {
 }
 mydata$Do.you.prefer.to.quit.or.to.reduce.smoking. <- factor(new_quit)
 
-#mydata$How.much.do.you.weigh...kg. <- discretize(mydata$How.much.do.you.weigh...kg., categories = 3)
+#BMI
+mydata$BMI <- mydata$How.much.do.you.weigh...kg./((mydata$What.is.your.height...cm./100)**2)
