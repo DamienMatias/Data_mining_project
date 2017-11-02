@@ -13,9 +13,6 @@ summary(cleaned)
 summary(women)
 summary(men)
 
-# Association rules
-library(arules)
-
 #1st try (Major problem)
 first <- cleaned[,c("Age.cat", "Age.started.smoking.cat", "Cigarettes.each.day", "First.cigarette", "When.last.try", "Health.category")]
 

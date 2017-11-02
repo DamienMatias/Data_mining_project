@@ -157,6 +157,9 @@ cleandata = function(mydata) {
   names(mydata)[names(mydata)=="Do.you.prefer.to.quit.or.to.reduce.smoking."] <- "Quit.reduce"
   names(mydata)[names(mydata)=="Why.do.you.want.to.reduce.quit.smoking."] <- "Why.quit"
   
+  # Association rules
+  library(arules)
+  
   # Our goal here is to categorize the data to use the apriori algorithm 
   categorized <- mydata
   categorized$Age.cat <- discretize(categorized$Age, categories = 3)
